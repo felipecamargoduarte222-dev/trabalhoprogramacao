@@ -1,5 +1,5 @@
 // THE ELDER SCROLLS 1: Dragon's Realm
-// Felipe Camargo e Kaua Alexandre - 2025
+// Felipe Camargo e Kaua Alexandre - 2026
 // cada partida sorteia cenario, inimigos e boss diferentes usando o dados.json
 
 const readline = require("readline");
