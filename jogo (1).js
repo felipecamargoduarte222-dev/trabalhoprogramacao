@@ -24,13 +24,13 @@ function sortearN(arr, n) {
 // Kaua: carreguei o json aqui em cima pra ficar acessivel em tudo
 const dados = JSON.parse(fs.readFileSync(__dirname + "/dados.json", "utf8"));
 
-// -----------------------------------------------
+
 // CLASSES DO PERSONAGEM
 // Felipe: fiz a classe base Personagem com tudo
 // que todo mundo compartilha (hp, mana, xp, etc)
 // depois fiz Guerreiro, Mago e Arqueiro herdando dela
 // cada um tem stats diferentes e habilidade propria
-// -----------------------------------------------
+
 
 class Personagem {
   constructor(nome, hp, mana, atk, def) {
@@ -127,13 +127,11 @@ class Arqueiro extends Personagem {
   }
 }
 
-// -----------------------------------------------
 // INIMIGOS E BOSS
 // Kaua: fiz as funcoes que montam inimigo e boss
 // a partir do json, adiciona os metodos vivo/levarDano/atacar
 // separei boss dos inimigos normais pq o boss tem
 // ataque especial que ignora defesa do jogador
-// -----------------------------------------------
 
 // Kaua: pega os dados do inimigo no json e adiciona os metodos necessarios
 function montarInimigo(id) {
@@ -169,12 +167,11 @@ function montarBoss(id) {
   };
 }
 
-// -----------------------------------------------
 // BATALHA POR TURNO
 // Kaua: fiz o loop principal de batalha
 // jogador escolhe acao, depois o inimigo ataca automatico
 // repete ate um dos dois morrer
-// -----------------------------------------------
+
 async function batalha(player, inimigo) {
   console.log("\n  inimigo: " + inimigo.nome);
   if (inimigo.fala) console.log('  "' + inimigo.fala + '"');
@@ -244,11 +241,9 @@ async function batalha(player, inimigo) {
   return false;
 }
 
-// -----------------------------------------------
 // EVENTO DE ESCOLHA
 // Kaua: sorteia um evento do json e executa o resultado
 // pode curar, dar item, vender pocao, causar dano ou dar buff
-// -----------------------------------------------
 async function eventoEscolha(player) {
   const ev = sortear(dados.escolhas);
   console.log("\n  " + ev.texto);
@@ -268,12 +263,12 @@ async function eventoEscolha(player) {
   await enter();
 }
 
-// -----------------------------------------------
+
 // CAMPANHA RANDOMIZADA
 // Felipe: essa funcao monta a campanha inteira na hora
 // sorteia o cenario, os inimigos e o boss do json
 // ai roda intro -> encontro1 -> evento -> encontro2 -> evento -> boss
-// -----------------------------------------------
+
 async function rodarCampanha(player) {
   const cenario = sortear(dados.cenarios);
   console.log("\n  -- " + cenario.nome + " --");
@@ -315,11 +310,9 @@ async function rodarCampanha(player) {
   return venceu;
 }
 
-// -----------------------------------------------
 // MENU PRINCIPAL
 // Felipe: tela inicial, escolha de classe e loop
 // de campanha (pode continuar jogando apos vencer)
-// -----------------------------------------------
 async function main() {
   console.log("\n  THE ELDER SCROLLS 1: Dragon's Realm");
   console.log("  Felipe Camargo e Kaua Alexandre - 2025");
